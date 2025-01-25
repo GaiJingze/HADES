@@ -29,10 +29,9 @@ def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
         messages=message,
     )
     answer = response.choices[0].message['content']
-    for keyword in str.split(answer):
-        keyword_dict = {"keyword":keyword}
-        with open(output_file_path, 'w') as f:
-            json.dump(keyword_dict, f, indent=4, ensure_ascii=False)
+    with open(output_file_path, 'a') as f:
+        f.write(answer)
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate harmful keywords using OpenAI.')
     parser.add_argument('--api_key', type=str, help='OpenAI API key', required=True)
