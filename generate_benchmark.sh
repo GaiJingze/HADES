@@ -16,11 +16,6 @@ for SCENARIO in "${SCENARIOS[@]}"; do
     --scenario "$SCENARIO" \
     --scenario_file "$SCENARIO_FILE"
   
-  # Classify keywords
-  python benchmark/generate_category.py \
-    --api_key "$API_KEY" \
-    --scenario "$SCENARIO" \
-    --model "$MODEL"
   
   # Generate instructions
   python benchmark/generate_instructions.py \
