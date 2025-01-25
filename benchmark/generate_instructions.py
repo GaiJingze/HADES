@@ -41,4 +41,4 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    generate_instructions(args.api_key, args.scenario, args.scenario_files)
+    generate_instructions(args.api_key, args.scenario, args.scenario_file)

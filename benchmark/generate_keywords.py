@@ -30,7 +30,7 @@ def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
     )
     answer = response.choices[0].message['content']
     
-    os.makedirs(os.path.dirname(args.output_file_path))
+    os.makedirs(os.path.dirname(output_file_path))
     with open(output_file_path, 'a') as f:
         f.write(answer)
 
