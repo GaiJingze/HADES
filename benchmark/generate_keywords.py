@@ -19,7 +19,7 @@ def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
     scenario_prompt_dict = read_json_file(scenario_file)
     
     output_file_path = f'./dataset/keywords/{scenario}.json'
-    os.makedirs(os.pah.dirname(output_file_path), exist_ok=True)
+    os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
 
     scenario_prompt = meta_scenario_prompt.format(scenario, scenario_prompt_dict[scenario])
     prompt = jailbreak_prompt + background_prompt + rule_prompt + scenario_prompt + demo_prompt + end_prompt
