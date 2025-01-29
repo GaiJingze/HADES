@@ -15,7 +15,7 @@ def classify_keywords(api_key, scenario, model):
     with open(input_file, 'r') as f:
         dataset = json.load(f)
     for line in dataset:
-        keywords = line["keywords"]
+        keywords = line["keyword"]
         prompt = background_prompt.format(keywords)
         message = [{'role': 'user', 'content': prompt}]
         
