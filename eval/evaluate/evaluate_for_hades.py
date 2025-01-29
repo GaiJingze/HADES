@@ -1,8 +1,12 @@
+import sys
+sys.path.append('/ephemeral/jingze/HADES/eval.evaluate.moderation')
+
 import os
 import argparse
 import json
 import numpy as np
 import pandas as pd
+
 from moderation import QAModeration
 
 def read_jsonl_file(file_path):

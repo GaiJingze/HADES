@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/ephemeral/jingze/HADES/eval.evaluate.moderation')
+
 import os
 import argparse
 import json
