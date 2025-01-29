@@ -68,7 +68,6 @@ case $MODEL in
   
   *)
     echo "Error: Invalid model selection. Please choose 'llava', 'gpt4v', or 'gemini'."
-    exit 1
     ;;
 esac
 
