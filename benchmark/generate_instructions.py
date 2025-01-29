@@ -30,7 +30,7 @@ def generate_instructions(api_key, scenario, scenario_file):
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     for keyword in keyword_list:
-
+        print(f'Generating instructions for keyword {keyword}, scenario {scenario}')
         start_time = time.time()
 
         prompt = background_prompt + scenario_prompt + demo_prompt + rule_prompt + end_prompt.format(keyword)

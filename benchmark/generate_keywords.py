@@ -16,6 +16,7 @@ def read_json_file(filename):
     return data
 
 def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
+    print(f'Generating keywords for scenario {scenario}')
     openai.api_key = api_key
     scenario_prompt_dict = read_json_file(scenario_file)
     
