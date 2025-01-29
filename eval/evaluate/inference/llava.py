@@ -19,6 +19,8 @@ from io import BytesIO
 import argparse
 from tqdm import tqdm
 
+import time
+
 def read_json_file(filename):
     with open(filename, 'r') as file:
         data = json.load(file)
@@ -115,6 +117,10 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
         model_name=llava_model_name
     )
 
+    time_record_file_path = f'./time/llava_inference.json'
+    os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
+    time_data_list = []
+
     path_list = os.listdir(text_dir)
     for mode in ['abstract', 'toxic']:
         for path in path_list:
@@ -138,6 +144,8 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
                                 concat_image_names.append(image_name)
 
                 for image_name in concat_image_names:
+                    print(f'Llava inference using for image {image_name} under keyword {line["keyword"]}')
+                    start_time = time.time()
                     image = f'{specific_image_dir}/{image_name}'
                     step = extract_number_from_filename(image_name, mode)
                     if mode == 'abstract':
@@ -155,7 +163,19 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
 
                     with open(f'{output_path}', 'a') as f:
                         f.write(json.dumps(line) + '\n')
-            
+
+                    time_cost = time.time() - start_time
+                    time_data = {}
+
+                    time_data['keyword'] = line["keyword"]
+                    time_data['step'] = line["step"]
+                    time_data['image'] = line["image"]
+                    time_data['time_cost'] = time_cost
+
+                    time_data_list.append(time_data)
+                    
+    with open(time_record_file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

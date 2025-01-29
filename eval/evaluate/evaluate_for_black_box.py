@@ -4,6 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 from eval.evaluate.moderation import QAModeration
+import time
 
 def read_jsonl_file(file_path):
     with open(file_path, 'r') as f:
@@ -93,6 +94,11 @@ def parse_arguments() -> argparse.Namespace:
 def main() -> None:
     args = parse_arguments()
     
+    time_record_file_path = f'./time/blackbox_eval.json'
+    os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
+    time_data_list = []
+    start_time = time.time()
+
     model = QAModeration.from_pretrained(
                 args.model_path,
                 model_max_length=args.max_length,
@@ -165,6 +171,13 @@ def main() -> None:
         results_path = eval_dataset_path.replace('gen_results', 'eval_results') + '/' + 'scores.xlsx'
         create_excel(result_dict, filename=results_path)
 
+    time_cost = time.time() - start_time
+    time_data = {}
+    time_data['time_cost'] = time_cost
+    time_data_list.append(time_data)
+
+    with open(time_record_file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
 
 
 if __name__ == '__main__':

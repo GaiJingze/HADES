@@ -4,7 +4,7 @@ INPUT_DIR='./eval/evaluate/results/gen_results/{}/black_box/abstract'
 IMAGE_SOURCE_DIR='./dataset/black_box/images'
 IMAGE_DEST_DIR='./dataset/white_box/init_images'
 SCENARIO='Violence' 
-ATTACK_MODEL='llava-15-13b'
+ATTACK_MODEL='llava'
 
 MODEL_PATH="liuhaotian/llava-v1.5-13b"
 MODEL_BASE=None
