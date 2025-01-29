@@ -34,7 +34,7 @@ MODEL=$2
 case $MODEL in
   llava)
     echo "Starting LLaVA evaluation..."
-    python ./llava_inference.py \
+    python eval/evaluate/inference/llava.py \
       --model_path "$LLAVA_MODEL_PATH" \
       --model-base "$LLAVA_MODEL_BASE" \
       --text-dir "$TEXT_DIR" \

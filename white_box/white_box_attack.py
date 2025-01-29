@@ -40,7 +40,7 @@ if __name__ == "__main__":
     parser.add_argument("--model_path", type=str, default="./checkpoint/llava-1.5-7b")
     parser.add_argument("--model-base", type=str, 
                         default=None)
-    parser.add_argument("--attack_model", type=str, default="llava-15-7b")
+    parser.add_argument("--attack_model", type=str, default="llava-15-13b")
     parser.add_argument("--save_dir", type=str, default="./dataset/white_box")
     parser.add_argument("--input_path", type=str, default="./dataset/instructions")
     parser.add_argument("--image-dir", type=str, default="./dataset/black_box/images")
