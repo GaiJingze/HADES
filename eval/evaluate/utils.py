@@ -18,7 +18,10 @@ from __future__ import annotations
 import torch
 from transformers import PreTrainedModel, PreTrainedTokenizerBase
 
-from eval.evaluate.constants import DEFAULT_BOS_TOKEN, DEFAULT_EOS_TOKEN, DEFAULT_PAD_TOKEN, DEFAULT_UNK_TOKEN
+import sys
+sys.path.append('/ephemeral/jingze/HADES/eval.evaluate.constants')
+
+from constants import DEFAULT_BOS_TOKEN, DEFAULT_EOS_TOKEN, DEFAULT_PAD_TOKEN, DEFAULT_UNK_TOKEN
 
 
 # Reference: https://github.com/tatsu-lab/stanford_alpaca/blob/main/train.py

@@ -20,6 +20,10 @@ import logging
 import os
 from typing import Callable, Literal, overload
 
+import sys
+sys.path.append('/ephemeral/jingze/HADES/eval.evaluate.constants')
+sys.path.append('/ephemeral/jingze/HADES/eval.evaluate.utils')
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset, TensorDataset
@@ -35,8 +39,8 @@ from transformers import (
 from transformers.modeling_outputs import SequenceClassifierOutputWithPast
 from transformers.trainer_utils import EvalPrediction
 
-from eval.evaluate.constants import PROMPT_INPUT
-from eval.evaluate.utils import calculate_binary_classification_metrics, resize_tokenizer_embedding
+from constants import PROMPT_INPUT
+from utils import calculate_binary_classification_metrics, resize_tokenizer_embedding
 
 
 __all__ = ['Moderation']
