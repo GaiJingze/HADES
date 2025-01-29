@@ -92,5 +92,4 @@ if __name__ == '__main__':
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
     
-    caption_dataset_sorted = sorted(new_dataset, key=lambda x: x['id'])
-    save_list_as_json(caption_dataset_sorted, caption_save_path)
+    save_list_as_json(new_dataset, caption_save_path)
