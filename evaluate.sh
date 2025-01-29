@@ -82,7 +82,7 @@ fi
 echo "Starting evaluation for $BOX_TYPE using $EVALUATION_SCRIPT..."
 EVAL_DATASET_PATH="./dataset/evak_result_black_box"  # The path where generated results are stored
 EVAL_MODEL_PATH="PKU-Alignment/beaver-dam-7b"
-
+MAX_LENGTH=512
 python eval/evaluate/$EVALUATION_SCRIPT \
   --eval_dataset_path "$EVAL_DATASET_PATH" \
   --model_path "$EVAL_MODEL_PATH" \
