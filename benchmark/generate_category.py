@@ -7,10 +7,9 @@ def classify_keywords(api_key, scenario, model):
     openai.api_key = api_key
     background_prompt = "I will provide you with a keyword, and you need to classify it into its semantic category. Your response should be either \"object\", \"behavior\", or \"concept\", using only one lowercase word. The keyword is {}."
     input_file = f'./dataset/instructions/{scenario}.json'
-    output_file = f'./dataset/category/{scenario}.json'
+    output_file = f'./dataset/instructions/{scenario}.json'
     
     # Ensure that the output directory exists before writing the file
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     with open(input_file, 'r') as f:
         dataset = json.load(f)
@@ -26,6 +25,7 @@ def classify_keywords(api_key, scenario, model):
         answer = response["choices"][0]["message"]["content"].strip()
         line["category"] = answer
 
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, 'w') as f:
         json.dump(dataset, f, indent=4, ensure_ascii=False)
 
