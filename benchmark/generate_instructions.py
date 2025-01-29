@@ -40,13 +40,13 @@ def generate_instructions(api_key, scenario, scenario_file):
                 messages=message,
             )
         answer = response["choices"][0]["message"]["content"]
-        
+
         is_valid_answer = "keywords" in answer and "instruction_list" in answer and answer.startswith("{") and answer.endswith("}")
         if is_valid_answer:
             with open(output_file, 'a') as f:
                 f.write(answer + '\n')
         else:
-            print("Invalid answer from keyword {keyword}: {answer}")
+            print(f"Invalid answer from keyword {keyword}: {answer}")
         
         time_cost = time.time() - start_time
         time_data = {}
