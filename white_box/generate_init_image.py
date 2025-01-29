@@ -3,6 +3,7 @@ import os
 import numpy as np
 from PIL import Image
 from argparse import ArgumentParser
+import time
 
 def generate_and_save_white_noise_image(first_image, image_dest_dir, entry_id, step):
     white_noise_height = first_image.height // 3
@@ -83,7 +84,25 @@ if __name__ == '__main__':
     parser.add_argument("--attack-model", type=str, default="llava-15-7b",)
     args = parser.parse_args()
 
+    time_record_file_path = f'./time/generate_init_image.json'
+    os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
+    time_data_list = []
+
+
+    print(f'Generating init image for scenario {args.scenario}')
+    start_time = time.time()
+    
     input_file_path = os.path.join(args.input_dir.format(args.attack_model), f'{args.scenario}.json')
     image_source_dir = os.path.join(args.image_source_dir, args.scenario)
     image_dest_dir = os.path.join(args.image_dest_dir, args.scenario)
     process_data(input_file_path, image_source_dir, image_dest_dir)
+
+    time_cost = time.time() - start_time
+    time_data = {}
+
+    time_data['time_cost'] = time_cost
+
+    time_data_list.append(time_data)
+
+    with open(time_record_file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')

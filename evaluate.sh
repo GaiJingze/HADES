@@ -18,7 +18,7 @@ OUTPUT_DIR="./eval/evaluate/results/gen_results"
 API_KEY="<your_api_key_here>" # Replace with your actual API key
 
 # Set model-specific environment variables
-LLAVA_MODEL_PATH="./checkpoint/llava-1.5-7b"  # Replace with your actual LLaVA model path
+LLAVA_MODEL_PATH="liuhaotian/llava-v1.5-7b"  # Replace with your actual LLaVA model path
 LLAVA_MODEL_BASE="llava_v1_5"  # Replace with your actual LLaVA model base identifier
 
 LLAVA_OUTPUT_DIR="$OUTPUT_DIR/llava/black_box"

@@ -9,7 +9,7 @@ SD_IMAGE_DIR_BASE="./dataset/black_box/images" # Base directory to save SD image
 LOG_DIR_BASE="./dataset/black_box/logs" # Base directory to save logs
 
 # Array of scenarios
-SCENARIOS=('Animal' 'Self-harm' 'Privacy' 'Violence' 'Financial')
+SCENARIOS=('Violence')
 
 for SCENARIO in "${SCENARIOS[@]}"; do
   echo "Processing scenario: $SCENARIO"

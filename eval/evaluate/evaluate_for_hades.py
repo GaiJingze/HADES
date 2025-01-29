@@ -43,7 +43,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         '--model_path',
         type=str,
-        default='./checkpoint/beaver-7b',
+        default='PKU-Alignment/beaver-dam-7bb',
         help='Path to the model.',
     )
     parser.add_argument(

@@ -21,6 +21,7 @@ import torch
 import random
 import torchvision.transforms.functional as TF
 from llava.mm_utils import read_json_file, item_process_func, create_adv_noise, DataCollatorForSupervisedDataset, QuestionDataset, Generator, apply_adv_noise_to_batch, denormalize
+import time
 
 @dataclass
 class DataArguments:
@@ -62,6 +63,11 @@ if __name__ == "__main__":
     ]
     args = parser.parse_args()
     data_args = DataArguments()
+
+    time_record_file_path = f'./time/white_box_attack.json'
+    start_time = time.time()
+    os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
+    time_data_list = []
 
     args.save_dir = f'{args.save_dir}/{args.attack_model}'
     input_path = f"{args.input_path}/{args.scenario}.json"
@@ -134,9 +140,18 @@ if __name__ == "__main__":
     data_iterator = iter(data_loader)
     data_batch = next(data_iterator)
 
+    time_cost = time.time() - start_time
+    time_data = {}
+
+    time_data['step'] = 0
+    time_data['time_cost'] = time_cost
+
+    time_data_list.append(time_data)
+
+    start_time = time.time()
     for step in range(num_iterations):
         for data_batch in data_loader:
-
+            
             data_batch_cuda = {key: value.to('cuda', non_blocking=True) if isinstance(value, torch.Tensor) else value 
                             for key, value in data_batch.items()}
             
@@ -189,6 +204,18 @@ if __name__ == "__main__":
 
                 print(f'Image with adversarial noise saved to {save_image_path}')
                 print(f'Adversarial noise image saved to {save_noise_image_path}')
+
+                time_cost = time.time() - start_time
+                time_data = {}
+
+                time_data['step'] = step
+                time_data['time_cost'] = time_cost
+
+                time_data_list.append(time_data)
+                start_time = time.time()
+                
+    with open(time_record_file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
 
 
 
