@@ -55,7 +55,7 @@ def generate_caption(system_prompt, question, demos):
 
         payload = json.dumps({
         "model": "gpt-3.5-turbo-16k-0613",
-        "prompt": messages,
+        "prompt": question,
         "max_tokens": 1000,
         "temperature": 1.1,
         })
