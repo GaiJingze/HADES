@@ -80,6 +80,8 @@ if __name__ == '__main__':
     new_dataset = []
     for line in tqdm(dataset): 
         print(line)
+        print(line["instruction_list"])
+        
         print(f'Generating caption for keyword {line["keyword"]}')
 
         start_time = time.time()
