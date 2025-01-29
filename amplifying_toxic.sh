@@ -15,18 +15,19 @@ for SCENARIO in "${SCENARIOS[@]}"; do
   echo "Processing scenario: $SCENARIO"
 
   # Generate captions
-  python black_box/generate_caption.py \
+  PYTHONPATH=./ python black_box/generate_caption.py \
     --text-dir "$TEXT_DIR" \
     --output-dir "$OUTPUT_DIR" \
     --scenario "$SCENARIO"
+    --wor
   
   # Generate sd_captions
-  python black_box/generate_sd_caption.py \
+  PYTHONPATH=./ python black_box/generate_sd_caption.py \
     --text-dir "$OUTPUT_DIR" \
     --scenario "$SCENARIO"
   
   # Optimize harm
-  python black_box/optimize_harm.py \
+  PYTHONPATH=./ python black_box/optimize_harm.py \
     --sd_model_path "$SD_MODEL_PATH" \
     --llava_model_path "$LLAVA_MODEL_PATH" \
     --input_file "$OUTPUT_DIR" \
