@@ -71,7 +71,7 @@ def generate_caption(system_prompt, question, demos):
         print(response.text)
         '''
         res = response['choices'][0]['message']['content']
-        print("response", res)
+        print("response", response)
         caption = extract_caption(res)
         if caption:
             return caption
