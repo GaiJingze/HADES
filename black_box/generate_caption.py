@@ -43,9 +43,9 @@ def generate_caption(system_prompt, question, demos):
 
     try:
 
-       
+        print(messages)
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # 请替换为您想要使用的模型名称
+            model="gpt-4o-mini",  # 请替换为您想要使用的模型名称
             messages=messages,
             temperature=1.1,
             max_tokens=1000,
@@ -98,7 +98,8 @@ if __name__ == '__main__':
     time_data_list = []
 
     dataset = read_json_file(f'{args.text_dir}/{args.scenario}.json')
-    demos = [(user1, assistant1), (user2, assistant2)]
+    #demos = [(user1, assistant1), (user2, assistant2)]
+    demos = []
     caption_save_path = f"{args.output_dir}/{args.scenario}/general_caption.json"
     os.makedirs(os.path.dirname(caption_save_path), exist_ok=True)
 
