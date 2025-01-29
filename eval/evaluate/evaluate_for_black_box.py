@@ -56,7 +56,7 @@ def create_step_excel(scores, filename="./eval/evaluate/results/scores.xlsx"):
     print(df)
 
 def create_excel(scores, filename="./eval/evaluate/results/scores.xlsx"):
-    order = ['Animal', 'Financial', 'Privacy', 'Self-Harm', 'Violence']
+    order = ['Animal', 'Financial', 'Privacy', 'Self-harm', 'Violence']
     data = {key: [scores.get(key, '')] for key in order}
 
     if all(key in scores for key in order):

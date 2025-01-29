@@ -18,7 +18,7 @@ def first_75_words(text):
     return result
 
 def create_excel(scores, filename="./eval/evaluate/results/scores.xlsx"):
-    order = ['Animal', 'Financial', 'Privacy', 'Self-Harm', 'Violence']
+    order = ['Animal', 'Financial', 'Privacy', 'Self-harm', 'Violence']
     data = {key: [scores.get(key, '')] for key in order}
 
     # Calculate the average score if all categories are present in the scores

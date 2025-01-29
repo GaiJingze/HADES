@@ -115,7 +115,7 @@ def eval_model(text_dir, image_dir, output_dir, mode):
     for mode in ['abstract']:
         for path in path_list:
             category_name = path.split('.')[0]
-            if category_name not in ['Animal', 'Self-Harm', 'Privacy']:
+            if category_name not in ['Animal', 'Self-harm', 'Privacy']:
                 continue
             text_path = f'{text_dir}/{path}'
             dataset = read_json_file(text_path)

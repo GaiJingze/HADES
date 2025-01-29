@@ -5,7 +5,7 @@ SCENARIO_FILE="./benchmark/scenario.json"
 MODEL="gpt-4-0314" 
 
 # Array of scenarios
-SCENARIOS=('Animal' 'Self-Harm' 'Privacy' 'Violence' 'Financial')
+SCENARIOS=('Animal' 'Self-harm' 'Privacy' 'Violence' 'Financial')
 
 for SCENARIO in "${SCENARIOS[@]}"; do
   echo "Processing scenario: $SCENARIO"
