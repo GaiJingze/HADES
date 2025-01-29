@@ -95,6 +95,8 @@ if __name__ == '__main__':
     input_file_path = os.path.join(args.input_dir.format(args.attack_model), f'{args.scenario}.json')
     image_source_dir = os.path.join(args.image_source_dir, args.scenario)
     image_dest_dir = os.path.join(args.image_dest_dir, args.scenario)
+    print("input_file_path")
+    print(input_file_path)
     process_data(input_file_path, image_source_dir, image_dest_dir)
 
     time_cost = time.time() - start_time
