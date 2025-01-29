@@ -54,7 +54,7 @@ def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate harmful keywords using OpenAI.')
     parser.add_argument('--api_key', type=str, help='OpenAI API key', required=True)
-    parser.add_argument('--scenario', type=str, help='Scenario for which to generate keywords', choices=['Animal', 'Self-harm', 'Privacy', 'Violence', 'Financial'], default='Violence')
+    parser.add_argument('--scenario', type=str, help='Scenario for which to generate keywords', choices=['Animal', 'Self-Harm', 'Privacy', 'Violence', 'Financial'], default='Violence')
     parser.add_argument('--scenario_file', type=str, help='Path to the JSON file containing the scenario descriptions', default='./benchmark/scenario.json')
     parser.add_argument('--jailbreak_prompt', type=str, help='Jailbreak prompt for GPT-4', default='')
     return parser.parse_args()
