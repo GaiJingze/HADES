@@ -45,7 +45,7 @@ prompt_template_dict = {
 
 def extract_number_from_filename(filename, mode):
     if mode == 'abstract':
-        match = re.search(r"concat_opt_(\d+)\.jpg", filename)
+        match = re.search(r"opt_(\d+)\.jpg", filename)
     elif mode =='toxic':
         match = re.search(r"opt_(\d+)\.jpg", filename)
     if match:
