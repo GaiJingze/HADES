@@ -6,7 +6,7 @@ import os
 def classify_keywords(api_key, scenario, model):
     openai.api_key = api_key
     background_prompt = "I will provide you with a keyword, and you need to classify it into its semantic category. Your response should be either \"object\", \"behavior\", or \"concept\", using only one lowercase word. The keyword is {}."
-    input_file = f'./dataset/keywords/{scenario}.json'
+    input_file = f'./dataset/instructions/{scenario}.json'
     output_file = f'./dataset/category/{scenario}.json'
     
     # Ensure that the output directory exists before writing the file
