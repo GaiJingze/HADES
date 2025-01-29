@@ -113,7 +113,6 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
     
     llava_tokenizer, llava_model, image_processor, context_len = load_pretrained_model(
         model_path=llava_model_path,
-        model_base=llava_model_base,
         model_name=llava_model_name
     )
 
