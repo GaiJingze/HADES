@@ -40,7 +40,7 @@ def generate_sd_prompt(system_prompt, question, demos):
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-0613",  # Replace with the correct model identifier
+            model="gpt-3.5-turbo",  # Replace with the correct model identifier
             messages=messages,
             temperature=1.1,
             max_tokens=1000,
