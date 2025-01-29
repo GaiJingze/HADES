@@ -7,7 +7,7 @@ SCENARIO='Violence'
 ATTACK_MODEL='llava'
 
 MODEL_PATH="liuhaotian/llava-v1.5-13b"
-MODEL_BASE=None
+MODEL_BASE="None"
 SAVE_DIR="./dataset/white_box/images"
 INPUT_PATH="./dataset/instructions"
 IMAGE_DIR="./dataset/black_box/images"
