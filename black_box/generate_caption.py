@@ -61,7 +61,7 @@ def generate_caption(system_prompt, question, demos):
         })
 
         headers = {
-        'Authorization': 'Bearer sk-jzFsjOToGGD7CDrLyWbAB3MZyGAW87tuYHeXeTN68XwksdQd',
+        'Authorization': 'Bearer sk-cs1sGmKXjvlTNQJxp4QjnLNz1T6W3r3BeRBrKU4hOyUkhKdY',
         'Content-Type': 'application/json'
         }
 
