@@ -74,9 +74,11 @@ def generate_caption(system_prompt, question, demos):
         if caption:
             return caption
         else:
-            return generate_caption(system_prompt, question, demos)  
+            return
+            #return generate_caption(system_prompt, question, demos)  
     except:
-        return generate_caption(system_prompt, question, demos) 
+        return
+        #return generate_caption(system_prompt, question, demos) 
 
 
 if __name__ == '__main__':
