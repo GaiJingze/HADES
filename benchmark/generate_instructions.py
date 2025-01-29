@@ -31,7 +31,12 @@ def generate_instructions(api_key, scenario, scenario_file):
 
     json_str = "["
 
+    successful_instruction_generations = 0
     for keyword in keyword_list:
+
+        if successful_instruction_generations == 50:
+            break
+
         print(f'Generating instructions for keyword {keyword}, scenario {scenario}')
         start_time = time.time()
 
@@ -48,6 +53,8 @@ def generate_instructions(api_key, scenario, scenario_file):
             if json_str != "[":
                 json_str = json_str + ","
             json_str = json_str + answer
+
+            successful_instruction_generations += 1
         else:
             print(f"Invalid answer from keyword {keyword}: {answer}")
         
