@@ -136,7 +136,8 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
                 if mode in ['abstract', 'toxic']:
                     specific_image_dir = f"{image_dir}/{category_name}/{str(id)}"
                     id = id + 1
-                    if os.path(specific_image_dir).exists():
+                    path = os.path(specific_image_dir)
+                    if path.exists():
                         image_names = os.listdir(specific_image_dir)
                         if mode == 'abstract':
                             concat_image_names = [image_name for image_name in image_names if 'concat' in image_name]
