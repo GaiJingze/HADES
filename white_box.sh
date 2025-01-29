@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INPUT_DIR='./eval/evaluate/results/gen_results/{}/black_box/abstract'
+INPUT_DIR='./eval/evaluate/results/gen_results/{}/black_box/toxic'
 IMAGE_SOURCE_DIR='./dataset/black_box/images'
 IMAGE_DEST_DIR='./dataset/white_box/init_images'
 SCENARIO='Violence' 

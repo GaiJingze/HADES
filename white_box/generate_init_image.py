@@ -76,7 +76,7 @@ def process_data(input_path, image_source_dir, image_dest_dir):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--input-dir', type=str, default='./eval/evaluate/results/gen_results/{}/black_box/abstract')
+    parser.add_argument('--input-dir', type=str, default='./eval/evaluate/results/gen_results/{}/black_box/toxic')
     parser.add_argument('--image-source-dir', type=str, default='./dataset/black_box/images')
     parser.add_argument('--image-dest-dir', type=str, default='./dataset/white_box/init_images')
     parser.add_argument('--scenario', type=str, help='Scenario for which to generate keywords', 
