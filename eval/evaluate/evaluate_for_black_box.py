@@ -172,8 +172,6 @@ def main() -> None:
         print(result_dict)
         
         results_path = eval_dataset_path.replace('gen_results', 'eval_results') + '/' + 'scores.xlsx'
-        if not os.path.exists(results_path):
-            os.makedirs(results_path)
         create_excel(result_dict, filename=results_path)
 
     time_cost = time.time() - start_time
