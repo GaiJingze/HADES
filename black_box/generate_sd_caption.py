@@ -64,6 +64,10 @@ if __name__ == '__main__':
                         choices=['Animal', 'Self-harm', 'Privacy', 'Violence', 'Financial'], default='Violence')
     args = parser.parse_args()
 
+    time_record_file_path = f'./time/gen_sd_caption_{args.scenario}.json'
+    os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
+    time_data_list = []
+
     dataset = read_json_file(f'{args.text_dir}/{args.scenario}/general_caption.json')
     demos = [(user1, assistant1), (user2, assistant2)]
     caption_save_path = f"{args.text_dir}/{args.scenario}/general_sd_prompt.json"
@@ -71,8 +75,22 @@ if __name__ == '__main__':
 
     new_dataset = []
     for line in tqdm(dataset): 
+        print(f'Generating sd caption for keyword {line["keyword"]}')
+        start_time = time.time()
+
         line["sd_prompt"] = generate_sd_prompt(system_prompt, line["caption"], demos) 
         new_dataset.append(line)
+
+        time_cost = time.time() - start_time
+        time_data = {}
+
+        time_data['keyword'] = line["keyword"]
+        time_data['time_cost'] = line["time_cost"]
+
+        time_data_list.append(time_data)
+
+    with open(time_record_file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
     
     caption_dataset_sorted = sorted(new_dataset, key=lambda x: x['id'])
     save_list_as_json(caption_dataset_sorted, caption_save_path)
