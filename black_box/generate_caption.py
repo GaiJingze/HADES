@@ -43,9 +43,9 @@ def generate_caption(system_prompt, question, demos):
 
     try:
 
-        '''
+       
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-0613",  # 请替换为您想要使用的模型名称
+            model="gpt-3.5-turbo",  # 请替换为您想要使用的模型名称
             messages=messages,
             temperature=1.1,
             max_tokens=1000,
@@ -55,7 +55,7 @@ def generate_caption(system_prompt, question, demos):
 
         print("question: ", question)
         payload = json.dumps({
-        "model": "gpt-3.5-turbo-16k-0613",
+        "model": "gpt-3.5-turbo",
         "prompt": question,
         "max_tokens": 1000,
         "temperature": 1.1,
@@ -69,6 +69,7 @@ def generate_caption(system_prompt, question, demos):
         response = requests.request("POST", url, headers=headers, data=payload)
 
         print(response.text)
+        '''
         res = response['choices'][0]['message']['content']
         print("response", res)
         caption = extract_caption(res)
