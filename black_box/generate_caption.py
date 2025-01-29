@@ -53,6 +53,7 @@ def generate_caption(system_prompt, question, demos):
         '''
         url = "https://api.chatanywhere.tech/v1/completions"
 
+        print("question: ", question)
         payload = json.dumps({
         "model": "gpt-3.5-turbo-16k-0613",
         "prompt": question,
@@ -74,11 +75,9 @@ def generate_caption(system_prompt, question, demos):
         if caption:
             return caption
         else:
-            return
-            #return generate_caption(system_prompt, question, demos)  
+            return generate_caption(system_prompt, question, demos)  
     except:
-        return
-        #return generate_caption(system_prompt, question, demos) 
+        return generate_caption(system_prompt, question, demos) 
 
 
 if __name__ == '__main__':
