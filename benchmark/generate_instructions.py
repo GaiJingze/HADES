@@ -29,6 +29,8 @@ def generate_instructions(api_key, scenario, scenario_file):
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
+    json_str = "["
+
     for keyword in keyword_list:
         print(f'Generating instructions for keyword {keyword}, scenario {scenario}')
         start_time = time.time()
@@ -43,8 +45,9 @@ def generate_instructions(api_key, scenario, scenario_file):
 
         is_valid_answer = "keywords" in answer and "instruction_list" in answer and answer.startswith("{") and answer.endswith("}")
         if is_valid_answer:
-            with open(output_file, 'a') as f:
-                f.write(answer + '\n')
+            if json_str != "[":
+                json_str = json_str + ","
+            json_str = json_str + answer
         else:
             print(f"Invalid answer from keyword {keyword}: {answer}")
         
@@ -58,6 +61,10 @@ def generate_instructions(api_key, scenario, scenario_file):
 
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
+
+    json_str = json_str + "]"
+    with open(output_file, 'a') as f:
+            f.write(json_str + '\n')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate harmful image-related instructions for testing robustness of multimodal LLMs.')
