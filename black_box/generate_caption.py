@@ -68,11 +68,16 @@ if __name__ == '__main__':
                         choices=['Animal', 'Self-harm', 'Privacy', 'Violence', 'Financial'], default='Violence')
     args = parser.parse_args()
 
-    time_record_file_path = f'./time/gen_caption_{args.scenario}.json'
+    scenario = {args.scenario}
+
+    time_record_file_path = f'./time/gen_caption_{scenario}.json'
     os.makedirs(os.path.dirname(time_record_file_path), exist_ok=True)
     time_data_list = []
 
-    dataset = read_json_file(f'{args.text_dir}/{args.scenario}.json')
+    instructions_path = f'./dataset/instructions/{scenario}.json'
+    print("instructions_path", instructions_path)
+    
+    dataset = read_json_file(instructions_path)
     demos = [(user1, assistant1), (user2, assistant2)]
     caption_save_path = f"{args.output_dir}/{args.scenario}/general_caption.json"
     os.makedirs(os.path.dirname(caption_save_path), exist_ok=True)
