@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export OPENAI_API_KEY="your_openai_api_key_here" # Set OpenAI API key as an environment variable
+export OPENAI_API_KEY="sk-jzFsjOToGGD7CDrLyWbAB3MZyGAW87tuYHeXeTN68XwksdQd" # Set OpenAI API key as an environment variable
+export OPENAI_API_BASE = "https://api.chatanywhere.tech/v1"
 TEXT_DIR="./dataset/instructions" # Assuming this is the directory where instructional texts are stored
 OUTPUT_DIR="./dataset/black_box/captions" # Assuming this is the directory where generated captions will be saved
 SD_MODEL_PATH="./checkpoint/pixart" # Path to PixArtAlphaPipeline pretrained model

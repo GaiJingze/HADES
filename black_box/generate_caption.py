@@ -41,7 +41,7 @@ def generate_caption(system_prompt, question, demos):
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",  # 请替换为您想要使用的模型名称
+            model="gpt-3.5-turbo-0613",  # 请替换为您想要使用的模型名称
             messages=messages,
             temperature=1.1,
             max_tokens=1000,
