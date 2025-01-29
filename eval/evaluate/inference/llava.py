@@ -168,10 +168,11 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
 
                     time_cost = time.time() - start_time
                     time_data = {}
-
+                    print("response", line["response"])
+                    print("time_cost: ", time_cost)
                     time_data['keyword'] = line["keyword"]
                     time_data['step'] = line["step"]
-                    time_data['image'] = line["image"]
+                    time_data['image'] = image
                     time_data['time_cost'] = time_cost
 
                     time_data_list.append(time_data)
