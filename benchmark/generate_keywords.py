@@ -51,9 +51,6 @@ def generate_keywords(api_key, scenario, scenario_file, jailbreak_prompt):
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
 
-    with open(time_record_file_path, 'a') as f:
-        f.write(answer)
-
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate harmful keywords using OpenAI.')
     parser.add_argument('--api_key', type=str, help='OpenAI API key', required=True)
