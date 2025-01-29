@@ -63,7 +63,8 @@ def generate_instructions(api_key, scenario, scenario_file):
 
         time_data['keyword'] = keyword
         time_data['time_cost'] = time_cost
-
+        time_data['success'] = is_valid_answer
+        
         time_data_list.append(time_data)
 
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
