@@ -60,7 +60,7 @@ def delete_generate_dataset(dataset, output_dataset):
 def extract_number_from_filename(filename, mode):
     # 匹配文件名中的数字，这里假设文件名的格式是 "concat_opt_[数字].jpg"
     if mode == 'abstract':
-        match = re.search(r"opt_(\d+)\.jpg", filename)
+        match = re.search(r"concat_opt_(\d+)\.jpg", filename)
     elif mode =='toxic':
         match = re.search(r"opt_(\d+)\.jpg", filename)
     if match:
