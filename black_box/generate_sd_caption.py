@@ -85,7 +85,7 @@ if __name__ == '__main__':
         time_data = {}
 
         time_data['keyword'] = line["keyword"]
-        time_data['time_cost'] = line["time_cost"]
+        time_data['time_cost'] = time_cost
 
         time_data_list.append(time_data)
 
