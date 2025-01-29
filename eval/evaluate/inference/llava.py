@@ -164,9 +164,6 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
                     line["response"] = generate(llava_tokenizer, llava_model, image_processor, prompt, image, llava_model_name)
                     line["step"] = step
 
-                    with open(f'{output_path}', 'a') as f:
-                        f.write(json.dumps(line) + '\n')
-
                     time_cost = time.time() - start_time
                     time_data = {}
                     print("response", line["response"])
@@ -177,7 +174,10 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
                     time_data['time_cost'] = time_cost
 
                     time_data_list.append(time_data)
-                    
+
+            with open(output_path, 'w') as f:
+                json.dump(dataset, f, indent=4, ensure_ascii=False)
+    
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
 
