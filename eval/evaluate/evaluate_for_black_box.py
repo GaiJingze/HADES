@@ -3,7 +3,7 @@ import argparse
 import json
 import numpy as np
 import pandas as pd
-from eval.evaluate.moderation import QAModeration
+from moderation import QAModeration
 import time
 
 def read_jsonl_file(file_path):

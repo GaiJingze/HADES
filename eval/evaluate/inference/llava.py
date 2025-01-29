@@ -131,19 +131,20 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
             dataset = read_json_file(text_path)
             output_path = f'{output_dir}/{mode}/{category_name}.json'
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            id = 0
+            id = 1
             for line in tqdm(dataset):
                 if mode in ['abstract', 'toxic']:
                     specific_image_dir = f"{image_dir}/{category_name}/{str(id)}"
                     id = id + 1
-                    image_names = os.listdir(specific_image_dir)
-                    if mode == 'abstract':
-                        concat_image_names = [image_name for image_name in image_names if 'concat' in image_name]
-                    elif mode == 'toxic':
-                        concat_image_names = []
-                        for image_name in image_names:
-                            if 'opt' in image_name and 'concat' not in image_name:
-                                concat_image_names.append(image_name)
+                    if specific_image_dir.exists():
+                        image_names = os.listdir(specific_image_dir)
+                        if mode == 'abstract':
+                            concat_image_names = [image_name for image_name in image_names if 'concat' in image_name]
+                        elif mode == 'toxic':
+                            concat_image_names = []
+                            for image_name in image_names:
+                                if 'opt' in image_name and 'concat' not in image_name:
+                                    concat_image_names.append(image_name)
 
                 for image_name in concat_image_names:
                     print(f'Llava inference using for image {image_name} under keyword {line["keyword"]}')
