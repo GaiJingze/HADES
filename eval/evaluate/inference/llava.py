@@ -130,6 +130,7 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
             text_path = f'{text_dir}/{path}'
             dataset = read_json_file(text_path)
             output_path = f'{output_dir}/{mode}/{category_name}.json'
+            print("output_path", output_path)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             id = 1
             for line in tqdm(dataset):
