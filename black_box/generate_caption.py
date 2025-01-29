@@ -54,7 +54,7 @@ def generate_caption(system_prompt, question, demos):
         url = "https://api.chatanywhere.tech/v1/completions"
 
         payload = json.dumps({
-        "model": "gpt-3.5-turbo-0613",
+        "model": "gpt-3.5-turbo-16k-0613",
         "prompt": messages,
         "max_tokens": 1000,
         "temperature": 1.1,
