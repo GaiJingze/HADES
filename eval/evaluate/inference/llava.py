@@ -128,14 +128,16 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
             if category_name not in ['Violence']:
                 continue
             text_path = f'{text_dir}/{path}'
-
-            with open(text_path, "r") as f:
-                dataset = json.load(f)
+            dataset = read_json_file(text_path)
             output_path = f'{output_dir}/{mode}/{category_name}.json'
             print("output_path", output_path)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            for id, line in enumerate(dataset):
-                print(f"id: {id}, line: {line}")
+            id = 1
+            for line in tqdm(dataset):
+                line["id"] = id
+                id = id + 1
+
+                print(line)
                 if mode in ['abstract', 'toxic']:
                     specific_image_dir = f"{image_dir}/{category_name}/{str(id)}"
                     if os.path.exists(specific_image_dir):
@@ -165,7 +167,6 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
 
                     line["response"] = generate(llava_tokenizer, llava_model, image_processor, prompt, image, llava_model_name)
                     line["step"] = step
-                    line['id'] = id
 
                     time_cost = time.time() - start_time
                     time_data = {}
