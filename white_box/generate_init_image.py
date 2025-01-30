@@ -38,6 +38,7 @@ def process_data(input_path, image_source_dir, image_dest_dir):
 
     processed_data = {}
     for entry in raw_data:
+        print("entry", entry)
         entry_id = entry['id']
 
         if entry_id in processed_data and entry['flagged']:

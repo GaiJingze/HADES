@@ -176,6 +176,7 @@ if __name__ == "__main__":
             model.zero_grad()
 
             if step % 100 == 0 and step > 99:
+            if step % 10 == 0 and step > 9:
                 print('######### Output - Iter = %d ##########' % step)
                 x_adv_batch = apply_adv_noise_to_batch(original_image, adv_noise)
                 response = my_generator.generate(data_dict['input_ids'], x_adv_batch)
