@@ -9,7 +9,7 @@ def generate_and_save_white_noise_image(first_image, image_dest_dir, entry_id, s
     white_noise_height = first_image.height // 3
     white_noise_image = generate_white_noise_image(first_image.width, white_noise_height)
     combined_image = concatenate_images(white_noise_image, first_image)
-    dest_image_path = os.path.join(image_dest_dir, str(entry_id), f"concat_opt_{step}.jpg")
+    dest_image_path = os.path.join(image_dest_dir, str(entry_id), f"opt_{step}.jpg")
     os.makedirs(os.path.dirname(dest_image_path), exist_ok=True)
     combined_image.save(dest_image_path)
 
@@ -38,7 +38,6 @@ def process_data(input_path, image_source_dir, image_dest_dir):
 
     processed_data = {}
     for entry in raw_data:
-        print("entry", entry)
         entry_id = entry['id']
 
         if entry_id in processed_data and entry['flagged']:
@@ -55,7 +54,7 @@ def process_data(input_path, image_source_dir, image_dest_dir):
 
     os.makedirs(image_dest_dir, exist_ok=True)
 
-    first_image_path = os.path.join(image_source_dir, '1', 'concat_opt_4.jpg')
+    first_image_path = os.path.join(image_source_dir, '1', 'opt_4.jpg')
     if os.path.isfile(first_image_path):
         first_image = Image.open(first_image_path)
         white_image_height = first_image.height // 3
@@ -64,7 +63,7 @@ def process_data(input_path, image_source_dir, image_dest_dir):
     for entry in output_list:
         entry_id = entry['id']
         step = entry['step']
-        image_filename = f"concat_opt_{step}.jpg"
+        image_filename = f"opt_{step}.jpg"
         source_image_path = os.path.join(image_source_dir, str(entry_id), image_filename)
         dest_image_path = os.path.join(image_dest_dir, f"{entry_id}.jpg")
 
