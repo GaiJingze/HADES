@@ -7,7 +7,6 @@ SCENARIO='Violence'
 ATTACK_MODEL='llava'
 
 MODEL_PATH="liuhaotian/llava-v1.5-13b"
-MODEL_BASE="None"
 SAVE_DIR="./dataset/white_box/images"
 INPUT_PATH="./eval/evaluate/results/gen_results/llava/black_box/toxic"
 IMAGE_DIR="./dataset/black_box/images"
@@ -24,7 +23,6 @@ python white_box/generate_init_image.py \
 # Now run the white box attack script
 python white_box/white_box_attack.py \
   --model_path "$MODEL_PATH" \
-  --model-base "$MODEL_BASE" \
   --attack_model "$ATTACK_MODEL" \
   --save_dir "$SAVE_DIR" \
   --input_path "$INPUT_PATH" \
