@@ -19,12 +19,22 @@ from llava import conversation as conversation_lib
 import transformers
 from PIL import Image
 import copy
-from typing import Dict, Sequence, List
+from typing import Dict, Sequence, Optional, List
 import re
 from dataclasses import dataclass, field
 import torch.nn.functional as F
 import torch
 import numpy as np
+
+@dataclass
+class DataArguments:
+    lazy_preprocess: Optional[bool] = field(default=True)
+    is_multimodal: Optional[bool] = field(default=True)
+    image_folder: Optional[str] = field(default='./dataset/black_box/images/')
+    scenario: Optional[str] = field(default='Violence')
+    image_aspect_ratio: str = 'expand'
+    image_grid_pinpoints: Optional[str] = field(default=None)
+    mm_use_im_start_end: Optional[str] = field(default=False)
 
 def load_image_from_base64(image):
     return Image.open(BytesIO(base64.b64decode(image)))
