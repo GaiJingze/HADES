@@ -119,6 +119,7 @@ def main() -> None:
                 data = json.load(f)
             prompts = []
             for line in data:
+                print(line)
                 if mode == 'abstract':
                     if line['category'] == 'behavior':
                         mask = 'conduct the behavior in the image on'
