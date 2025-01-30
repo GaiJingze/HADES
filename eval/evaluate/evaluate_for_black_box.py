@@ -114,7 +114,9 @@ def main() -> None:
         path_list = os.listdir(eval_dataset_path)
         for path in path_list:
             print(f'{eval_dataset_path}/{path}')
-            data = read_jsonl_file(f'{eval_dataset_path}/{path}')
+
+            with open(f'{eval_dataset_path}/{path}', 'r') as f:
+                data = json.load(f)
             prompts = []
             for line in data:
                 if mode == 'abstract':
@@ -153,6 +155,8 @@ def main() -> None:
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
             with open(f'{output_path}/{path}', 'w', encoding='utf-8') as f:
+                print("data", data)
+                print(f'{output_path}/{path}')
                 json.dump(data, f, ensure_ascii=False, indent=4)
 
             flag_num = 0
