@@ -112,6 +112,8 @@ def main() -> None:
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
             with open(f'{output_path}/{path}', 'w', encoding='utf-8') as f:
+                print("data", data)
+                print(f'{output_path}/{path}')
                 json.dump(data, f, ensure_ascii=False, indent=4)
 
             flag_num = 0
