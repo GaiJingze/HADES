@@ -130,7 +130,7 @@ if __name__ == "__main__":
     device = model.device
 
     #optimize settings
-    num_iterations = 30 #
+    num_iterations = 10 #
     clip_value = 1.0
 
     my_generator = Generator(model=model, tokenizer=tokenizer)
@@ -173,46 +173,44 @@ if __name__ == "__main__":
             adv_noise.grad.zero_()
             model.zero_grad()
 
-            if step % 10 == 0 and step > 9:
-                print('######### Output - Iter = %d ##########' % step)
-                x_adv_batch = apply_adv_noise_to_batch(original_image, adv_noise)
-                response = my_generator.generate(data_dict['input_ids'], x_adv_batch)
-                print('>>>', response)
+        if step % 2 == 0 and step > 1:
+            print('######### Output - Iter = %d ##########' % step)
+            x_adv_batch = apply_adv_noise_to_batch(original_image, adv_noise)
+            response = my_generator.generate(data_dict['input_ids'], x_adv_batch)
+            print('>>>', response)
 
-                # Denormalize and prepare the image with adversarial noise for saving
-                adv_img_prompt = denormalize(x_adv_batch).detach().cpu().squeeze(0)  # Remove batch dimension
-                print("shape????")
-                print(adv_img_prompt.shape)
-                #adv_img_prompt = adv_img_prompt.permute(1, 2, 0)  # Change from CHW to HWC
-                adv_img_prompt = TF.to_pil_image(adv_img_prompt)  # Convert to PIL Image
+            # Denormalize and prepare the image with adversarial noise for saving
+            adv_img_prompt = denormalize(x_adv_batch).detach().cpu().squeeze(0)  # Remove batch dimension
+            #adv_img_prompt = adv_img_prompt.permute(1, 2, 0)  # Change from CHW to HWC
+            adv_img_prompt = TF.to_pil_image(adv_img_prompt)  # Convert to PIL Image
 
-                # Denormalize and prepare the adversarial noise itself for saving
-                adv_noise_img = denormalize(adv_noise).detach().cpu().squeeze(0)  # Remove batch dimension
-                #adv_noise_img = adv_noise_img.permute(1, 2, 0)  # Change from CHW to HWC
-                adv_noise_img = TF.to_pil_image(adv_noise_img)  # Convert to PIL Image
+            # Denormalize and prepare the adversarial noise itself for saving
+            adv_noise_img = denormalize(adv_noise).detach().cpu().squeeze(0)  # Remove batch dimension
+            #adv_noise_img = adv_noise_img.permute(1, 2, 0)  # Change from CHW to HWC
+            adv_noise_img = TF.to_pil_image(adv_noise_img)  # Convert to PIL Image
 
-                # Create the directory for saving images if it doesn't exist
-                os.makedirs(args.save_dir, exist_ok=True)
+            # Create the directory for saving images if it doesn't exist
+            os.makedirs(args.save_dir, exist_ok=True)
 
-                # Define the paths for saving images
-                save_image_path = os.path.join(args.save_dir, f'bad_prompt_temp_{step}.jpg')
-                save_noise_image_path = os.path.join(args.save_dir, f'adv_noise_{step}.jpg')
+            # Define the paths for saving images
+            save_image_path = os.path.join(args.save_dir, f'bad_prompt_temp_{step}.jpg')
+            save_noise_image_path = os.path.join(args.save_dir, f'adv_noise_{step}.jpg')
 
-                # Save images as JPEG
-                adv_img_prompt.save(save_image_path, 'JPEG')
-                adv_noise_img.save(save_noise_image_path, 'JPEG')
+            # Save images as JPEG
+            adv_img_prompt.save(save_image_path, 'JPEG')
+            adv_noise_img.save(save_noise_image_path, 'JPEG')
 
-                print(f'Image with adversarial noise saved to {save_image_path}')
-                print(f'Adversarial noise image saved to {save_noise_image_path}')
+            print(f'Image with adversarial noise saved to {save_image_path}')
+            print(f'Adversarial noise image saved to {save_noise_image_path}')
 
-                time_cost = time.time() - start_time
-                time_data = {}
-                print(f"Time cost for picture {save_image_path}: {time_cost}")
-                time_data['step'] = step
-                time_data['time_cost'] = time_cost
+            time_cost = time.time() - start_time
+            time_data = {}
+            print(f"Time cost for picture {save_image_path}: {time_cost}")
+            time_data['step'] = step
+            time_data['time_cost'] = time_cost
 
-                time_data_list.append(time_data)
-                start_time = time.time()
+            time_data_list.append(time_data)
+            start_time = time.time()
                 
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
         f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')#
