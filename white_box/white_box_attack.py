@@ -126,11 +126,11 @@ if __name__ == "__main__":
     data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
     data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, collate_fn=data_collator)
 
-    optimizer = optim.AdamW([adv_noise], lr=0.00001)
+    optimizer = optim.AdamW([adv_noise], lr=0.0001)
     device = model.device
 
     #optimize settings
-    num_iterations = 3000 #
+    num_iterations = 1200 #
     clip_value = 1.0
 
     my_generator = Generator(model=model, tokenizer=tokenizer)
@@ -173,7 +173,7 @@ if __name__ == "__main__":
             adv_noise.grad.zero_()
             model.zero_grad()
 
-        step_interval = 10
+        step_interval = 2
         if step % step_interval == 0 and step > 0:
             print('######### Output - Iter = %d ##########' % step)
             x_adv_batch = apply_adv_noise_to_batch(original_image, adv_noise)
