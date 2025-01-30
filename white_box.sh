@@ -9,7 +9,7 @@ ATTACK_MODEL='llava'
 MODEL_PATH="liuhaotian/llava-v1.5-13b"
 MODEL_BASE="None"
 SAVE_DIR="./dataset/white_box/images"
-INPUT_PATH="./dataset/instructions"
+INPUT_PATH="./eval/evaluate/results/gen_results/llava/black_box/toxic"
 IMAGE_DIR="./dataset/black_box/images"
 MODE='toxic'
 
