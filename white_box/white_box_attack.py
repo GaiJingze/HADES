@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
 from llava.model.builder import load_pretrained_model
-from llava.mm_utils import get_model_name_from_path, get_model_name_from_path
+from llava.mm_utils import get_model_name_from_path
 import copy
 from typing import Dict, Optional, List
 import re
