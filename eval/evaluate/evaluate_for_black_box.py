@@ -120,6 +120,7 @@ def main() -> None:
             prompts = []
             responses = []
             for line in data:
+                print("keyword", line["keyword"])
                 responses.append(line['response'])
                 if mode == 'abstract':
                     if line['category'] == 'behavior':
@@ -131,7 +132,7 @@ def main() -> None:
                     prompt = line['instruction']
                 prompts.append(prompt)
             # prompts = [line['instruction'] for line in data]
-            
+
             print(responses)
             predictions = model.predict(
                 question=prompts,
