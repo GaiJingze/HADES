@@ -109,7 +109,7 @@ def main() -> None:
             )
     result_dict = {}
 
-    for mode in ['abstract']:
+    for mode in ['toxic']:
         eval_dataset_path = args.eval_dataset_path + mode
         path_list = os.listdir(eval_dataset_path)
         for path in path_list:
