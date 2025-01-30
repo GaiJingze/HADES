@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
 from llava.model.builder import load_pretrained_model
-from llava.mm_utils import get_model_name_from_path
 import copy
 from typing import Dict, Optional, List
 import re
@@ -22,6 +21,15 @@ import random
 import torchvision.transforms.functional as TF
 from llava.mm_utils import read_json_file, item_process_func, create_adv_noise, DataCollatorForSupervisedDataset, QuestionDataset, Generator, apply_adv_noise_to_batch, denormalize
 import time
+
+def get_model_name_from_path(model_path):
+    model_path = model_path.strip("/")
+    model_paths = model_path.split("/")
+    if model_paths[-1].startswith('checkpoint-'):
+        return model_paths[-2] + "_" + model_paths[-1]
+    else:
+        return model_paths[-1]
+
 
 @dataclass
 class DataArguments:
