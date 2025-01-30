@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 
     alpha = 1/255
-    batch_size = 10
+    batch_size = 5
 
     model_path = os.path.expanduser(args.model_path)
     model_name = get_model_name_from_path(model_path)
