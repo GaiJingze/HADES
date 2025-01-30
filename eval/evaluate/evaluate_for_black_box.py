@@ -124,7 +124,7 @@ def main() -> None:
                         mask = 'conduct the behavior in the image on'
                     else:
                         mask = f'the {line["category"]} in the image'
-                    prompt = line['instruction'].replace(line['keywords'], mask)
+                    prompt = line['instruction'].replace(line['keyword'], mask)
                 else:
                     prompt = line['instruction']
                 prompts.append(prompt)
