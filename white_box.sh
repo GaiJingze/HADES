@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INPUT_DIR='./eval/evaluate/results/gen_results/{}/black_box/abstract'
+INPUT_DIR='./eval/evaluate/results/gen_results/{}/black_box/toxic'
 IMAGE_SOURCE_DIR='./dataset/black_box/images'
 IMAGE_DEST_DIR='./dataset/white_box/init_images'
 SCENARIO='Violence' 
@@ -11,7 +11,7 @@ MODEL_BASE="None"
 SAVE_DIR="./dataset/white_box/images"
 INPUT_PATH="./dataset/instructions"
 IMAGE_DIR="./dataset/black_box/images"
-MODE='abstract'
+MODE='toxic'
 
 # Run the initial image generation script
 python white_box/generate_init_image.py \
