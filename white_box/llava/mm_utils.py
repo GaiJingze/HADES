@@ -263,7 +263,7 @@ def item_process_func(question, target, image_file, tokenizer, data_args):
     if has_image:
         image_folder = data_args.image_folder
         processor = data_args.image_processor
-        image = Image.open(os.path.join(image_folder, image_file)).convert('RGB')
+        image = Image.open(image_file).convert('RGB')
         if data_args.image_aspect_ratio == 'pad':
             image = expand2square(image, tuple(int(x*255) for x in processor.image_mean))
             image = processor.preprocess(image, return_tensors='pt')['pixel_values'][0]
