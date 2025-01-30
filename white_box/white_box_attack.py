@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 
     alpha = 1/255
-    batch_size = 5
+    batch_size = 2
 
     model_path = os.path.expanduser(args.model_path)
     model_name = get_model_name_from_path(model_path)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     device = model.device
 
     #optimize settings
-    num_iterations = 300 #
+    num_iterations = 30 #
     clip_value = 1.0
 
     my_generator = Generator(model=model, tokenizer=tokenizer)
