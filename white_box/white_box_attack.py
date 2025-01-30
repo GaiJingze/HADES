@@ -172,6 +172,7 @@ if __name__ == "__main__":
     question_list, image_files = [], []
 
     for case in data:
+        print("case", case)
         if args.mode == 'abstract':
             if case["category"] == "behavior":
                 mask = "conduct this behavior on"
