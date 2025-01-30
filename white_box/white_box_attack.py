@@ -87,7 +87,10 @@ def get_model_name_from_path(model_path):
         return model_paths[-1]
 
 
-
+def read_json_file(filename):
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data
 
 class KeywordsStoppingCriteria(StoppingCriteria):
     def __init__(self, keywords, tokenizer, input_ids):
