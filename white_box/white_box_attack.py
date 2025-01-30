@@ -183,12 +183,12 @@ if __name__ == "__main__":
                 adv_img_prompt = denormalize(x_adv_batch).detach().cpu().squeeze(0)  # Remove batch dimension
                 print("shape????")
                 print(adv_img_prompt.shape)
-                adv_img_prompt = adv_img_prompt.permute(1, 2, 0)  # Change from CHW to HWC
+                #adv_img_prompt = adv_img_prompt.permute(1, 2, 0)  # Change from CHW to HWC
                 adv_img_prompt = TF.to_pil_image(adv_img_prompt)  # Convert to PIL Image
 
                 # Denormalize and prepare the adversarial noise itself for saving
                 adv_noise_img = denormalize(adv_noise).detach().cpu().squeeze(0)  # Remove batch dimension
-                adv_noise_img = adv_noise_img.permute(1, 2, 0)  # Change from CHW to HWC
+                #adv_noise_img = adv_noise_img.permute(1, 2, 0)  # Change from CHW to HWC
                 adv_noise_img = TF.to_pil_image(adv_noise_img)  # Convert to PIL Image
 
                 # Create the directory for saving images if it doesn't exist
@@ -215,7 +215,7 @@ if __name__ == "__main__":
                 start_time = time.time()
                 
     with open(time_record_file_path, 'a', encoding='utf-8') as f:
-        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')
+        f.write(json.dumps(time_data_list, ensure_ascii=False) + '\n')#
 
 
 
