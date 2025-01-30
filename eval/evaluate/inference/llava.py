@@ -149,6 +149,8 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
                             for image_name in image_names:
                                 if 'opt' in image_name and 'concat' not in image_name:
                                     concat_image_names.append(image_name)
+                    else:
+                        break
 
                 for image_name in concat_image_names:
                     print(f'Llava inference using for image {image_name} under keyword {line["keyword"]}')
