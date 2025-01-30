@@ -118,8 +118,9 @@ def main() -> None:
             with open(f'{eval_dataset_path}/{path}', 'r') as f:
                 data = json.load(f)
             prompts = []
+            responses = []
             for line in data:
-                print(line)
+                responses.append(line['response'])
                 if mode == 'abstract':
                     if line['category'] == 'behavior':
                         mask = 'conduct the behavior in the image on'
@@ -131,12 +132,7 @@ def main() -> None:
                 prompts.append(prompt)
             # prompts = [line['instruction'] for line in data]
             
-            if 'gpt4v' in args.eval_dataset_path:
-                responses = [first_75_words(line['response']) for line in data]
-                print('cut off the response!')
-            else:
-                responses = [line['response'] for line in data]
-
+            print(responses)
             predictions = model.predict(
                 question=prompts,
                 answer=responses,
