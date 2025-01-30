@@ -8,7 +8,6 @@ import argparse
 import json
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
 from llava.model.builder import load_pretrained_model
 import copy
