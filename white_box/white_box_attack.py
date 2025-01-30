@@ -181,6 +181,8 @@ if __name__ == "__main__":
 
                 # Denormalize and prepare the image with adversarial noise for saving
                 adv_img_prompt = denormalize(x_adv_batch).detach().cpu().squeeze(0)  # Remove batch dimension
+                print("shape????")
+                print(adv_img_prompt.shape)
                 adv_img_prompt = adv_img_prompt.permute(1, 2, 0)  # Change from CHW to HWC
                 adv_img_prompt = TF.to_pil_image(adv_img_prompt)  # Convert to PIL Image
 
@@ -205,7 +207,7 @@ if __name__ == "__main__":
 
                 time_cost = time.time() - start_time
                 time_data = {}
-
+                print(f"Time cost for picture {save_image_path}: {time_cost}")
                 time_data['step'] = step
                 time_data['time_cost'] = time_cost
 
