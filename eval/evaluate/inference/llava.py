@@ -132,8 +132,7 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
             output_path = f'{output_dir}/{mode}/{category_name}.json'
             print("output_path", output_path)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            id = 1
-            for id, line in enumerate(dataset):
+            for id, line in tqdm(dataset):
                 if mode in ['abstract', 'toxic']:
                     specific_image_dir = f"{image_dir}/{category_name}/{str(id)}"
                     if os.path.exists(specific_image_dir):
