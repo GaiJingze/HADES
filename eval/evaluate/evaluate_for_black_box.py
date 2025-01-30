@@ -113,6 +113,7 @@ def main() -> None:
         eval_dataset_path = args.eval_dataset_path + mode
         path_list = os.listdir(eval_dataset_path)
         for path in path_list:
+            print(f'{eval_dataset_path}/{path}')
             data = read_jsonl_file(f'{eval_dataset_path}/{path}')
             prompts = []
             for line in data:
