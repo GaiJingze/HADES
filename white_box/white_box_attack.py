@@ -130,7 +130,7 @@ if __name__ == "__main__":
     device = model.device
 
     #optimize settings
-    num_iterations = 10 #
+    num_iterations = 3000 #
     clip_value = 1.0
 
     my_generator = Generator(model=model, tokenizer=tokenizer)
@@ -173,7 +173,8 @@ if __name__ == "__main__":
             adv_noise.grad.zero_()
             model.zero_grad()
 
-        if step % 2 == 0 and step > 1:
+        step_interval = 10
+        if step % step_interval == 0 and step > 0:
             print('######### Output - Iter = %d ##########' % step)
             x_adv_batch = apply_adv_noise_to_batch(original_image, adv_noise)
             response = my_generator.generate(data_dict['input_ids'], x_adv_batch)
@@ -206,6 +207,7 @@ if __name__ == "__main__":
             time_cost = time.time() - start_time
             time_data = {}
             print(f"Time cost for picture {save_image_path}: {time_cost}")
+            time_data['index'] = step / step_interval
             time_data['step'] = step
             time_data['time_cost'] = time_cost
 
