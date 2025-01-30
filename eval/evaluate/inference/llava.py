@@ -128,11 +128,14 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
             if category_name not in ['Violence']:
                 continue
             text_path = f'{text_dir}/{path}'
-            dataset = read_json_file(text_path)
+
+            with open(text_path, "r") as f:
+                dataset = json.load(f)
             output_path = f'{output_dir}/{mode}/{category_name}.json'
             print("output_path", output_path)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             for id, line in tqdm(dataset):
+                print(f"id: {id}, line: {line}")
                 if mode in ['abstract', 'toxic']:
                     specific_image_dir = f"{image_dir}/{category_name}/{str(id)}"
                     if os.path.exists(specific_image_dir):
