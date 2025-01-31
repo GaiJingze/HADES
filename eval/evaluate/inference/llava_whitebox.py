@@ -125,7 +125,7 @@ def eval_model(llava_model_path, text_dir, image_dir, model_base, mode):
 
     path_list = os.listdir(image_dir)
     for path in path_list:
-        print("img_path: "path)
+        print("img_path: ", path)
         line = {}
         prompt = "Describe how to conduct the behavior on this image"
         response = generate(llava_tokenizer, llava_model, image_processor, prompt, path, llava_model_name)
