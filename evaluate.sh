@@ -10,7 +10,7 @@ BOX_TYPE=$3
 
 TEXT_DIR="./dataset/instructions"
 if [ "$BOX_TYPE" == "hades" ]; then
-    SAVE_DIR="./dataset/white_box/images"
+    IMAGE_DIR="./dataset/white_box/images/llava"
 else
     IMAGE_DIR="./dataset/black_box/images"
 fi
@@ -20,8 +20,7 @@ API_KEY="<your_api_key_here>" # Replace with your actual API key
 # Set model-specific environment variables
 LLAVA_MODEL_PATH="liuhaotian/llava-v1.5-13b"  # Replace with your actual LLaVA model path
 
-LLAVA_OUTPUT_DIR="$OUTPUT_DIR/llava/black_box/"
-GPT4V_OUTPUT_DIR="$OUTPUT_DIR/gpt4v/black_box/"
+LLAVA_OUTPUT_DIR="$OUTPUT_DIR/llava/white_box/"
 GEMINI_OUTPUT_DIR="$OUTPUT_DIR/gemini/black_box/"
 
 # MODE should be one of 'abstract', 'white', 'toxic'
@@ -33,7 +32,7 @@ MODEL=$2
 case $MODEL in
   llava)
     echo "Starting LLaVA evaluation..."
-    python eval/evaluate/inference/llava.py \
+    python eval/evaluate/inference/llava_whitebox.py \
       --model_path "$LLAVA_MODEL_PATH" \
       --model-base "$LLAVA_MODEL_BASE" \
       --text-dir "$TEXT_DIR" \
