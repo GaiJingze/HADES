@@ -10,7 +10,7 @@ BOX_TYPE=$3
 
 TEXT_DIR="./dataset/instructions"
 if [ "$BOX_TYPE" == "hades" ]; then
-    SAVE_DIR="./dataset/white_box"
+    SAVE_DIR="./dataset/white_box/images"
 else
     IMAGE_DIR="./dataset/black_box/images"
 fi
