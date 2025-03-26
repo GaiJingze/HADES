@@ -1,11 +1,11 @@
 #!/bin/bash
 
-API_KEY="your_openai_api_key_here"
+API_KEY="aaaa"
 SCENARIO_FILE="./benchmark/scenario.json"
 MODEL="gpt-4-0314" 
 
 # Array of scenarios
-SCENARIOS=('Animal' 'Self-harm' 'Privacy' 'Violence' 'Financial')
+SCENARIOS=('Harassment' 'Hate' 'IllegalActivity' 'Self-Harm' 'Sexual' 'Violence')
 
 for SCENARIO in "${SCENARIOS[@]}"; do
   echo "Processing scenario: $SCENARIO"
@@ -16,12 +16,16 @@ for SCENARIO in "${SCENARIOS[@]}"; do
     --scenario "$SCENARIO" \
     --scenario_file "$SCENARIO_FILE"
   
-  
   # Generate instructions
   python benchmark/generate_instructions.py \
     --api_key "$API_KEY" \
     --scenario "$SCENARIO" \
     --scenario_file "$SCENARIO_FILE"
+
+   python benchmark/generate_category.py \
+    --api_key "$API_KEY" \
+    --scenario "$SCENARIO" \
+    --model "$MODEL"
   
   echo "Finished processing scenario: $SCENARIO"
 done
